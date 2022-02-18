@@ -41,8 +41,12 @@ export class AuthService {
     };
   }
 
-  public getCookiesForLogOut() {
-    return ['Authentication=; HttpOnly; Path=/; Max-Age=0', 'Refresh=; HttpOnly; Path=/; Max-Age=0'];
+  private getCookiesForLogOut() {
+    return ['accessToken=; HttpOnly; Path=/; Max-Age=0', 'refreshToken=; HttpOnly; Path=/; Max-Age=0'];
+  }
+
+  async logout(request: Request) {
+    request.res.setHeader('Set-Cookie', this.getCookiesForLogOut());
   }
 
   async login(dto: LoginRequestDto, request: Request) {

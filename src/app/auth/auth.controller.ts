@@ -12,9 +12,14 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('/login')
-  async loginByPhoneNumberPanel(@Body() dto: LoginRequestDto, @Req() request: Request) {
+  async login(@Body() dto: LoginRequestDto, @Req() request: Request) {
     const user = await this.authService.login(dto, request);
     return new LoginResponseDto(user);
+  }
+
+  @Post('/logout')
+  async logout(@Req() request: Request) {
+    await this.authService.logout(request);
   }
 
   @RefreshAuth()
@@ -27,7 +32,7 @@ export class AuthController {
 
   @Auth(['test'])
   @Get('/access')
-  async access() {
+  async access(@GetUser() user: any) {
     return { hello: 'access1' };
   }
 

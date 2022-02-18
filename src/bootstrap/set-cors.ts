@@ -7,14 +7,14 @@ export const SetCors = (app: INestApplication) => {
     app.enableCors({
       origin: SECURITY_CORS_ORIGIN,
       credentials: true,
-      allowedHeaders: ['content-type'],
+      allowedHeaders: ['content-type', 'x-loop-request'],
       methods: ['GET', 'POST', 'OPTIONS'],
     });
   } else {
     app.enableCors({
       origin: true,
       credentials: true,
-      allowedHeaders: ['content-type'],
+      allowedHeaders: ['content-type', 'x-loop-request'],
       methods: ['GET', 'POST', 'OPTIONS'],
     });
   }
