@@ -20,7 +20,6 @@ jobs:
         if: contains(steps.files.outputs.all, 'package.json')
         run: |
           echo "package.json has been changed"
-          docker login ${{ secrets.DOCKER_REGISTRY_HOST }} -u ${{ secrets.DOCKER_REGISTRY_USER }} -p ${{ secrets.DOCKER_REGISTRY_SECRET }}
           ${{ secrets.DOCKER_LOGIN }}
           npm run docker:publish:dep:dev
       - name: Build docker image
