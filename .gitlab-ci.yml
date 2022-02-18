@@ -1,0 +1,36 @@
+variables:
+  app_name: "sdm-backend"
+
+stages:
+  - deploy_master
+  - deploy_release
+  - deploy_develop
+
+before_script:
+    - docker login -u $docker_username -p $docker_password
+
+deploy_on_master:
+  stage: deploy_master
+  only:
+    - master
+  script:
+    - DOCKER_BUILDKIT=1 docker build --progress=plain -t $app_name:prod . -f Dockerfile.prod
+    - docker push $app_name:prod
+
+
+deploy_on_release:
+  stage: deploy_release
+  only:
+    - release
+  script:
+    - DOCKER_BUILDKIT=1 docker build --progress=plain -t $app_name:rc . -f Dockerfile.rc
+    - docker push $app_name:rc
+
+
+deploy_on_develop:
+  stage: deploy_develop
+  only:
+    - develop
+  script:
+    - DOCKER_BUILDKIT=1 docker build --progress=plain -t $app_name:dev . -f Dockerfile.dev
+    - docker push $app_name:dev
