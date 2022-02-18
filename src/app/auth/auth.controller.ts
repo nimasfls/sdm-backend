@@ -28,7 +28,7 @@ export class AuthController {
   @Auth(['test'])
   @Get('/access')
   async access() {
-    return { hello: 'access' };
+    return { hello: 'access1' };
   }
 
   @Get('/test')
