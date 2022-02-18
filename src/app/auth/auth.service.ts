@@ -21,7 +21,7 @@ export class AuthService {
       secret: JwtSecret,
       expiresIn: JwtExpireDuration,
     });
-    const cookie = `accessToken=${token}; HttpOnly; Path=/; Max-Age=${JwtExpireDuration}`;
+    const cookie = `accessToken=${token}; HttpOnly; Path=/; Max-Age=${JwtExpireDuration}; SameSite=None; Secure`;
     return {
       cookie,
       token,
@@ -34,7 +34,7 @@ export class AuthService {
       secret: JwtRefreshTokenSecret,
       expiresIn: JwtRefreshExpireDuration,
     });
-    const cookie = `refreshToken=${token}; HttpOnly; Path=/; Max-Age=${JwtRefreshExpireDuration}`;
+    const cookie = `refreshToken=${token}; HttpOnly; Path=/; Max-Age=${JwtRefreshExpireDuration}; SameSite=None; Secure`;
     return {
       cookie,
       token,
