@@ -25,5 +25,4 @@ jobs:
       - name: Build docker image
         run: |
           ${{ secrets.DOCKER_LOGIN }}
-#          docker login ${{ secrets.DOCKER_REGISTRY_HOST }} -u ${{ secrets.DOCKER_REGISTRY_USER }} -p ${{ secrets.DOCKER_REGISTRY_SECRET }}
           npm run docker:publish:dev
