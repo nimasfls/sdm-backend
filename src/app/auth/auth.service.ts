@@ -34,7 +34,7 @@ export class AuthService {
       secret: JwtRefreshTokenSecret,
       expiresIn: JwtRefreshExpireDuration,
     });
-    const cookie = `refreshToken=${token}; HttpOnly; Psath=/; Max-Age=${JwtRefreshExpireDuration}`;
+    const cookie = `refreshToken=${token}; HttpOnly; Path=/; Max-Age=${JwtRefreshExpireDuration}`;
     return {
       cookie,
       token,
