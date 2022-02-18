@@ -33,6 +33,6 @@ export class AuthController {
 
   @Get('/test')
   async test() {
-    return { hello: 'world' };
+    return { hello: 'world1' };
   }
 }
